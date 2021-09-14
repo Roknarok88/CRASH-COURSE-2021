@@ -1,7 +1,7 @@
 <template>
 <header>
     <h1>{{text}}</h1>
-    <Button @btn-click="$emit('toggle-add-task')" :text="showAddTask ? 'Close' : 'Add Task'" :color="showAddTask ? 'red' : 'green'"/>
+    <Button v-show="homePage" @btn-click="$emit('toggle-add-task')" :text="showAddTask ? 'Close' : 'Add Task'" :color="showAddTask ? 'red' : 'green'"/>
 </header>
 </template>
 
@@ -18,9 +18,16 @@ Button
         text: String,
         showAddTask: Boolean,
     },
-    methods:{
-
+    computed:{
+        homePage(){
+            if(this.$route.path === '/'){
+                return true
+            } else{
+                return false;
+            }
+        }
     }
+   
 }
 </script>
 
